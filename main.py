@@ -4,18 +4,19 @@ from flask import Flask, render_template, request, session,redirect
 from flask_sqlalchemy import SQLAlchemy
 import json
 import os
-
+from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
+from urllib.parse import quote
 
 app=Flask(__name__)
-
+load_dotenv()
 with open('config.json','r') as c:
     params = json.load(c)["params"]
     print("params",params)
 
 
-local_server=True
-app.secret_key = 'super-secret-key'
+local_server=False
+app.secret_key = os.getenv("SECRET_KEY")
 app.config['UPLOAD_FOLDER']=params['upload_location']
 
 # 'mysql://root:@localhost/coding_thender'
@@ -24,7 +25,7 @@ app.config['UPLOAD_FOLDER']=params['upload_location']
 if(local_server):
     app.config['SQLALCHEMY_DATABASE_URI'] = params['local_uri']
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri']
+    app.config['SQLALCHEMY_DATABASE_URI'] = params['prod_uri'] % quote(os.getenv("PASSWORD"))
 db = SQLAlchemy(app)
 
 #contact table model
@@ -153,4 +154,5 @@ def post(post_slug):
     return render_template('post.html',params=params,post_data=post_data)
 
 if __name__ == "__main__":
-    app.run(port=5001,debug=True);
+    #app.run(port=5001,debug=True);
+    app.run(host="149.68.15.71", port=5001, debug=True)
