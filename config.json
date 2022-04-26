@@ -1,0 +1,22 @@
+{
+    "params":
+        {
+            "local_server": "True",
+            "local_uri": "mysql://root:@localhost/coding_thender",
+            "prod_uri": "mysql://root:@localhost/coding_thender",
+            "fb_url": "http://facebook.com/",
+            "tw_url": "https://twitter.com/",
+            "git_url":"http://github.com/",
+            "blog_name": "Coding Thunder",
+            "tag_line": "Heaven for programmers",
+            "gmail-user":"your-email@gmail.com",
+            "gmail-password":"gmailpassword",
+            "about_text": "Hi my name is harry and I create programming tutorials and I am a good boy",
+            "no_of_posts": 2,
+            "login_image":"bootstrap-logo.svg",
+            "admin_user":"asim",
+            "admin_password": "turi",
+            "upload_location":"C:\\Users\\asima\\PycharmProjects\\FlaskProject\\static"
+        }
+
+}
